@@ -3,7 +3,8 @@
 #=======================================================================================
 
 import os
-from lib.debugging import dprint
+import time
+#from .debugging import dprint
 
 #=======================================================================================
 # Library
@@ -44,7 +45,6 @@ class MakeableFile(BaseFile):
 	
 	def __init__(self, path, make=False, makeDirs=False):
 		super().__init__(path)
-		#dprint("{0} // {1} // {2} // {3}".format(path, make, makeDirs, self.exists))
 		if makeDirs: # Prevent recursion, but it isn't obvious. Perhaps introduce something like 'stop='.
 			if not self.parentDir.exists:
 				self.makeDirs()
@@ -140,5 +140,4 @@ class Dir(MakeableFile):
 		return items
 	
 	def make(self):
-		dprint("Making directory: ", self.path)
 		os.mkdir(self.path)
