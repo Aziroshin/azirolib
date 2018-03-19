@@ -4,7 +4,7 @@
 
 import os
 import time
-#from .debugging import dprint
+from .debugging import dprint
 
 #=======================================================================================
 # Library
@@ -36,6 +36,10 @@ class BaseFile(object):
 	@property
 	def exists(self):
 		return os.path.exists(self.path)
+	
+	@property
+	def writable(self):
+		return os.access(self.path, os.W_OK)
 	
 class MakeableFile(BaseFile):
 	
